@@ -23,6 +23,7 @@ import {
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { FaCartPlus } from 'react-icons/fa';
 import { useProductStore } from '../store/product';
 import { useState } from 'react';
 
@@ -57,6 +58,8 @@ const ProductCard = ({ product }) => {
       setIsLoading(false);
     }
   };
+
+  const handleAddToCart = async () => {};
   return (
     <Box
       shadow={'lg'}
@@ -79,104 +82,109 @@ const ProductCard = ({ product }) => {
         <Text fontWeight={'bold'} fontSize={'lg'} color={textColor} mb={2}>
           ${product.price}
         </Text>
-        <HStack>
-          {/*Modal for Product Update*/}
-          <DialogRoot
-            lazyMount
-            open={open}
-            onOpenChange={(e) => setOpen(e.open)}>
-            <DialogTrigger asChild>
-              <IconButton bgColor={'blue.400'}>
-                <FaRegEdit />
-              </IconButton>
-            </DialogTrigger>
-            <DialogContent
-              as="form"
-              onSubmit={(e) =>
-                handleUpdateProduct(e, product._id, updatedProduct)
-              }
-              bg={useColorModeValue('#fff', 'gray.600')}>
-              <DialogHeader>
-                <DialogTitle>Update Product</DialogTitle>
-              </DialogHeader>
-              <DialogBody pb="4">
-                <VStack gap={6}>
-                  <Box w={'full'}>
-                    <VStack>
-                      <Input
-                        mb={3}
-                        placeholder="Product name"
-                        name="name"
-                        type="text"
-                        value={updatedProduct.name}
-                        onChange={(e) =>
-                          setUpdatedProduct({
-                            ...updatedProduct,
-                            name: e.target.value
-                          })
-                        }
-                      />
-                      <Input
-                        mb={3}
-                        placeholder="Product price"
-                        name="price"
-                        type="number"
-                        value={updatedProduct.price}
-                        onChange={(e) =>
-                          setUpdatedProduct({
-                            ...updatedProduct,
-                            price: parseFloat(e.target.value)
-                          })
-                        }
-                      />
-                      <Input
-                        mb={5}
-                        placeholder="Image URL"
-                        name="image"
-                        value={updatedProduct.image}
-                        onChange={(e) =>
-                          setUpdatedProduct({
-                            ...updatedProduct,
-                            image: e.target.value
-                          })
-                        }
-                      />
-                    </VStack>
-                  </Box>
-                </VStack>
-              </DialogBody>
-              <DialogFooter>
-                <DialogActionTrigger asChild>
-                  <Button variant="outline">Cancel</Button>
-                </DialogActionTrigger>
-                <Button
-                  bg="cyan.400"
-                  type="submit"
-                  fontSize={'17px'}
-                  isDisabled={isLoading}>
-                  {isLoading ? (
-                    <Flex justifyContent={'center'}>
-                      <img
-                        src="/spinner.gif"
-                        alt="spinner"
-                        height={25}
-                        width={25}
-                      />
-                    </Flex>
-                  ) : (
-                    'Update'
-                  )}
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </DialogRoot>
+        <Flex justifyContent={'space-between'}>
+          <HStack>
+            {/*Modal for Product Update*/}
+            <DialogRoot
+              lazyMount
+              open={open}
+              onOpenChange={(e) => setOpen(e.open)}>
+              <DialogTrigger asChild>
+                <IconButton bgColor={'blue.400'}>
+                  <FaRegEdit />
+                </IconButton>
+              </DialogTrigger>
+              <DialogContent
+                as="form"
+                onSubmit={(e) =>
+                  handleUpdateProduct(e, product._id, updatedProduct)
+                }
+                bg={useColorModeValue('#fff', 'gray.600')}>
+                <DialogHeader>
+                  <DialogTitle>Update Product</DialogTitle>
+                </DialogHeader>
+                <DialogBody pb="4">
+                  <VStack gap={6}>
+                    <Box w={'full'}>
+                      <VStack>
+                        <Input
+                          mb={3}
+                          placeholder="Product name"
+                          name="name"
+                          type="text"
+                          value={updatedProduct.name}
+                          onChange={(e) =>
+                            setUpdatedProduct({
+                              ...updatedProduct,
+                              name: e.target.value
+                            })
+                          }
+                        />
+                        <Input
+                          mb={3}
+                          placeholder="Product price"
+                          name="price"
+                          type="number"
+                          value={updatedProduct.price}
+                          onChange={(e) =>
+                            setUpdatedProduct({
+                              ...updatedProduct,
+                              price: parseFloat(e.target.value)
+                            })
+                          }
+                        />
+                        <Input
+                          mb={5}
+                          placeholder="Image URL"
+                          name="image"
+                          value={updatedProduct.image}
+                          onChange={(e) =>
+                            setUpdatedProduct({
+                              ...updatedProduct,
+                              image: e.target.value
+                            })
+                          }
+                        />
+                      </VStack>
+                    </Box>
+                  </VStack>
+                </DialogBody>
+                <DialogFooter>
+                  <DialogActionTrigger asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogActionTrigger>
+                  <Button
+                    bg="cyan.400"
+                    type="submit"
+                    fontSize={'17px'}
+                    isDisabled={isLoading}>
+                    {isLoading ? (
+                      <Flex justifyContent={'center'}>
+                        <img
+                          src="/spinner.gif"
+                          alt="spinner"
+                          height={25}
+                          width={25}
+                        />
+                      </Flex>
+                    ) : (
+                      'Update'
+                    )}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </DialogRoot>
 
-          <IconButton
-            bgColor={'red.400'}
-            onClick={() => handleDeleteProduct(product._id)}>
-            <RiDeleteBin5Fill />
+            <IconButton
+              bgColor={'red.400'}
+              onClick={() => handleDeleteProduct(product._id)}>
+              <RiDeleteBin5Fill />
+            </IconButton>
+          </HStack>
+          <IconButton onClick={handleAddToCart}>
+            <FaCartPlus />
           </IconButton>
-        </HStack>
+        </Flex>
       </Box>
     </Box>
   );

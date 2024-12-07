@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ColorModeButton } from '@/components/ui/color-mode';
 import { useColorModeValue } from '@/components/ui/color-mode';
 import { CiSquarePlus } from 'react-icons/ci';
+import { FiShoppingCart } from 'react-icons/fi';
+import Select from './Select';
 
 const Navbar = () => {
   return (
@@ -23,6 +25,7 @@ const Navbar = () => {
           bgClip={'text'}>
           <Link to={'/'}>Product Store 🛒</Link>
         </Text>
+        <Select />
         <HStack gap={3} alignItems={'center'}>
           <Link to={'/create'}>
             <IconButton
@@ -32,6 +35,11 @@ const Navbar = () => {
             </IconButton>
           </Link>
           <ColorModeButton bg={useColorModeValue('gray.200', 'gray.700')} />
+          <Link to={'/cart'}>
+            <IconButton>
+              <FiShoppingCart />
+            </IconButton>
+          </Link>
         </HStack>
       </Flex>
     </Container>

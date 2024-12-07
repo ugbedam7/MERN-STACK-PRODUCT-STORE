@@ -96,7 +96,7 @@ export const useProductStore = create((set) => ({
       });
 
       const data = await res.json();
-      console.log(data);
+
       if (!data.success) return { success: false, message: data.message };
 
       // Updates the UI after component mounts.

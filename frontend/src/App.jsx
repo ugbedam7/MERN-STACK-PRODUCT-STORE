@@ -6,7 +6,7 @@ import CreateProduct from './pages/CreateProduct';
 
 function App() {
   return (
-    <Box bg={{ base: 'white', _dark: '#1A202C' }} minH={'100vh'}>
+    <Box bg={{ base: 'gray.100', _dark: '#1A202C' }} minH={'100vh'}>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
