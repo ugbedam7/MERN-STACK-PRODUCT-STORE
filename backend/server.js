@@ -17,7 +17,7 @@ app.use(cors());
 app.use('/api/products', productRoutes);
 
 // Compress the frontend in the backend for production
-if (process.env.MODE === 'producution') {
+if (process.env.MODE === 'production') {
   app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
   app.get('*', (req, res) => {
