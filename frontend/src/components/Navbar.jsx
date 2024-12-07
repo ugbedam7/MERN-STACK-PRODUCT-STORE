@@ -36,7 +36,9 @@ const Navbar = () => {
           </Link>
           <ColorModeButton bg={useColorModeValue('gray.200', 'gray.700')} />
           <Link to={'/cart'}>
-            <IconButton>
+            <IconButton
+              bg={useColorModeValue('gray.200', 'gray.700')}
+              color={useColorModeValue('#000', '#fff')}>
               <FiShoppingCart />
             </IconButton>
           </Link>

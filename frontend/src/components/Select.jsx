@@ -28,7 +28,7 @@ const Select = () => {
       </SelectTrigger>
       <SelectContent bg={useColorModeValue('gray.100', 'gray.700')}>
         {frameworks.items.map((product) => (
-          <SelectItem item={product} key={product.value}>
+          <SelectItem item={product} key={product.value} fontSize={'15px'}>
             {product.label}
           </SelectItem>
         ))}
